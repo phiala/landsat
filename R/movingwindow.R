@@ -16,7 +16,7 @@ function(x, kernel, na.rm=TRUE)
     }
 
     # return the same structure as the input values
-    if(inherits(class(results), "SpatialGridDataFrame"))
+    if(is(results, "SpatialGridDataFrame"))
         results@data[,1] <- as.vector(newmat)
     else if(is.data.frame(results))
         results <- data.frame(matrix(newmat, nrow=nrow(results), ncol=ncol(results)))

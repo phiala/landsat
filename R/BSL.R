@@ -7,7 +7,7 @@ function(band3, band4, method = "quantile", ulimit = .99, llimit = .005, maxval 
         band3 <- read.asciigrid(band3)
         band3 <- band3@data[,1]
     } else {
-        if(inherits(class(band3), "SpatialGridDataFrame")) {
+        if(is(band3, "SpatialGridDataFrame")) {
             band3 <- band3@data[,1]
         } else {
             band3 <- as.vector(as.matrix(band3))
@@ -18,7 +18,7 @@ function(band3, band4, method = "quantile", ulimit = .99, llimit = .005, maxval 
         band4 <- read.asciigrid(band4)
         band4 <- band4@data[,1]
     } else {
-        if(inherits(class(band4), "SpatialGridDataFrame")) {
+        if(is(band4, "SpatialGridDataFrame")) {
             band4 <- band4@data[,1]
         } else {
             band4 <- as.vector(as.matrix(band4))
