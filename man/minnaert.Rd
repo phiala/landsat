@@ -76,7 +76,8 @@ minnaert(x, slope, aspect, sunelev, sunazimuth, na.value = NA, GRASS.aspect=FALS
 
 	# use cosine method of topographic correction
 	data(july4)
-	july4.minpix <- minnaert(july4, dem.slopeasp$slope, dem.slopeasp$aspect, sunelev=61.4, sunazimuth=125.8, slopeclass=c(1, 5, 10, 15, 50))
+	july4.minpix <- minnaert(july4, dem.slopeasp$slope, dem.slopeasp$aspect, 
+	sunelev=61.4, sunazimuth=125.8, slopeclass=c(1, 5, 10, 15, 50))
 	july4.minpix$classcoef # all coefficients
 }
 \keyword{ spatial }
