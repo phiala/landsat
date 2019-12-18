@@ -1,8 +1,8 @@
 Package: landsat
 Type: Package
 Title: Radiometric and topographic correction of satellite imagery
-Version: 1.0.11
-Date: 2017-10-25
+Version: 1.0.12
+Date: 2019-12-18
 Author: Sarah Goslee
 Maintainer: Sarah Goslee <sarah.goslee@ars.usda.gov>
 Depends: R (>= 2.15.0), rgdal, sp (>= 1.0)

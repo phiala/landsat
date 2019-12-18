@@ -11,7 +11,7 @@ DOS(sat = 5, scattering.coef = c(-4, -2, -1, -0.7, -0.5), SHV, SHV.band, gain, o
 }
 \arguments{
   \item{sat}{
-	Landsat satellite platform: 5 for TM; 7 for ETM+.
+	Landsat satellite platform: 5 for TM; 7 for ETM+; 8 for OLI.
 }
   \item{scattering.coef}{
 	Atmospheric scattering coefficient; defaults are from Chavez 1988.
