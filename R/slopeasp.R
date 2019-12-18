@@ -1,13 +1,13 @@
 slopeasp <- function (x, EWres, NSres, EWkernel, NSkernel, smoothing = 1, flatna=TRUE) 
 {
-    if(class(x) == "SpatialGridDataFrame") {
+    if(inherits(class(x), "SpatialGridDataFrame")) {
     	xmat <- t(as.matrix(x))
     }
     else {
        xmat <- as.matrix(x)
     }
     if (missing(EWres)) {
-        if (class(x) == "SpatialGridDataFrame") {
+        if (inherits(class(x), "SpatialGridDataFrame")) {
             EWres <- x@grid@cellsize[1]
         }
         else {
@@ -15,7 +15,7 @@ slopeasp <- function (x, EWres, NSres, EWkernel, NSkernel, smoothing = 1, flatna
         }
     }
     if (missing(NSres)) {
-        if (class(x) == "SpatialGridDataFrame") {
+        if (inherits(class(x), "SpatialGridDataFrame")) {
             NSres <- x@grid@cellsize[2]
         }
         else {
@@ -54,7 +54,7 @@ slopeasp <- function (x, EWres, NSres, EWkernel, NSkernel, smoothing = 1, flatna
     }
 
 
-    if (class(x) == "SpatialGridDataFrame") {
+    if (inherits(class(x), "SpatialGridDataFrame")) {
         temp <- x
         temp@data[, 1] <- as.vector(t(aspect))
         aspect <- temp

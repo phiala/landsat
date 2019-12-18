@@ -17,7 +17,7 @@ function(basename, sat=7)
     band5 <- get(paste(basename, "5", sep=""))
     band7 <- get(paste(basename, "7", sep=""))
 
-    if(class(band1) == "SpatialGridDataFrame") {
+    if(inherits(class(band1), "SpatialGridDataFrame")) {
     	output.sgdf <- band1
 	    use.sgdf <- TRUE
     	band1 <- band1@data[,1]
