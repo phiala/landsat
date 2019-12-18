@@ -29,8 +29,8 @@ function(basename, sat=7)
         bandf <- get(paste(basename, "7", sep=""))
     }
 
-    if(is(band1, "SpatialGridDataFrame")) {
-    	output.sgdf <- band1
+    if(is(banda, "SpatialGridDataFrame")) {
+    	output.sgdf <- banda
 	    use.sgdf <- TRUE
     	banda <- banda@data[,1]
     	bandb <- bandb@data[,1]
