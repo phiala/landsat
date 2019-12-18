@@ -1,4 +1,4 @@
-slopeasp <- function (x, EWres, NSres, EWkernel, NSkernel, smoothing = 1, flatna=TRUE) 
+slopeasp <- function (x, EWres, NSres, EWkernel, NSkernel, smoothing = 1) 
 {
     if(is(x, "SpatialGridDataFrame")) {
     	xmat <- t(as.matrix(x))
@@ -8,7 +8,7 @@ slopeasp <- function (x, EWres, NSres, EWkernel, NSkernel, smoothing = 1, flatna
     }
     if (missing(EWres)) {
         if (is(x, "SpatialGridDataFrame")) {
-            EWres <- slot(getGridTopology(dem), "cellsize")[1]
+            EWres <- slot(getGridTopology(x), "cellsize")[1]
         }
         else {
             stop("EWres must be specified if x is not a SpatialGridDataFrame.\n")
@@ -16,7 +16,7 @@ slopeasp <- function (x, EWres, NSres, EWkernel, NSkernel, smoothing = 1, flatna
     }
     if (missing(NSres)) {
         if (is(x, "SpatialGridDataFrame")) {
-            EWres <- slot(getGridTopology(dem), "cellsize")[2]
+            NSres <- slot(getGridTopology(x), "cellsize")[2]
         }
         else {
             stop("NSres must be specified if x is not a SpatialGridDataFrame.\n")
@@ -32,28 +32,13 @@ slopeasp <- function (x, EWres, NSres, EWkernel, NSkernel, smoothing = 1, flatna
             -1/8), ncol = 3, nrow = 3, byrow = TRUE)
     }
     NS.mat <- movingwindow(xmat, NSkernel)/NSres
+
     slope <- atan(sqrt(EW.mat^2 + NS.mat^2)/smoothing)
     slope <- (180/pi) * slope
+
     aspect <- 180 - (180/pi) * atan(NS.mat/EW.mat) + 90 * (EW.mat/abs(EW.mat))
-    if(flatna) {
-        aspect[slope == 0] <- NA
-    } else {
-        aspect[slope == 0] <- 0
-    }
 
-    akernel <- matrix(c(1,1,1,1,0,1,1,1,1), ncol = 3, nrow = 3, byrow = TRUE)
-    smoothasp <- movingwindow(aspect, akernel)
-    smoothcount <- movingwindow(ifelse(is.na(aspect), NA, 1), akernel)
-    while(any(smoothcount) == 0) {
-        smoothasp[smoothcount == 0] <- NA
-        smoothcount[smoothcount == 0] <- NA
-        smoothasp <- smoothasp/smoothcount
-        smoothasp <- movingwindow(smoothasp, akernel)
-        smoothcount <- movingwindow(ifelse(is.na(smoothasp), NA, 1), akernel)
-    }
-    smoothasp <- smoothasp/smoothcount
-    aspect[slope == 0 & !is.na(slope)] <- smoothasp[slope == 0 & !is.na(slope)]
-
+    aspect[slope == 0] <- 0
 
     if (is(x, "SpatialGridDataFrame")) {
         temp <- x

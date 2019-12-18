@@ -7,7 +7,7 @@
 	Uses gridded elevation data to calculate slope and aspect, by default using a 3x3 region. The horizontal resolution and vertical resolution must be in the same units.
 }
 \usage{
-slopeasp(x, EWres, NSres, EWkernel, NSkernel, smoothing=1, flatna=TRUE)
+slopeasp(x, EWres, NSres, EWkernel, NSkernel, smoothing=1)
 }
 \arguments{
   \item{x}{
@@ -28,9 +28,6 @@ slopeasp(x, EWres, NSres, EWkernel, NSkernel, smoothing=1, flatna=TRUE)
   \item{smoothing}{
 	A positive integer describing the additional smoothing to be applied, if any. smoothing=1 (default) means no smoothing will be used.
 }
-  \item{flatna}{
-	If flatna is TRUE, aspect will be set to NA when slope == 0.
-}
 }
 \details{
 	By default, a 3x3 Sobel filter is used (as is standard in many GIS packages). A larger Sobel filter or a different filter will give varying results. This filter provides the third-order finite difference weighted by reciprocal of distance method proposed by Unwin (1981).
@@ -38,7 +35,7 @@ slopeasp(x, EWres, NSres, EWkernel, NSkernel, smoothing=1, flatna=TRUE)
 }
 \value{
 	\item{slope }{The slope of the DEM, in degrees}
-	\item{aspect }{The aspect of the DEM, beginning with north and moving clockwise, and with aspect = 0 where slope = 0, unless flatna=TRUE, in which case it is NA.}
+	\item{aspect }{The aspect of the DEM, beginning with north and moving clockwise, and with aspect = 0 where slope = 0.}
 }
 \author{
 	Sarah Goslee
