@@ -1,8 +1,8 @@
 citHeader("To cite landsat in publications use:")
 
-citEntry(entry = "Article",
+bibentry(bibtype = "Article",
   title        = "Analyzing Remote Sensing Data in {R}: The {landsat} Package",
-  author       = personList(as.person("Sarah C. Goslee")),
+  author       = c(person(("Sarah C."), "Goslee")),
   journal      = "Journal of Statistical Software",
   year         = "2011",
   volume       = "43",
@@ -11,7 +11,7 @@ citEntry(entry = "Article",
   doi          = "10.18637/jss.v043.i04",
 
   textVersion  =
-  paste("Sarah C. Goslee (2011).",
+  paste("Goslee, Sarah C. (2011).",
         "Analyzing Remote Sensing Data in R: The landsat Package.",
         "Journal of Statistical Software, 43(4), 1-25.",
         "DOI:10.18637/jss.v043.i04")
